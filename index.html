@@ -17,14 +17,15 @@
 <body>
 <!-- ⚡ رابط التطبيق : عند تغيير النشر في Apps Script عدّل هذا السطر فقط -->
 <script>var APP_URL='https://script.google.com/macros/s/AKfycby6l_IrNUkcAwqJcHTcR6Vew1ixBCx9xfgwxxgZvnWIy74UtLDulJ5ojaiuS_4A5RT3-g/exec';
-/* طريقة الفتح : 'frame' = داخل الصفحة (يبقى الرابط القصير ظاهرا) ، 'redirect' = تحويل مباشر إلى التطبيق (أضمن على الهاتف) */
-var MODE='redirect';
-if(MODE==='redirect')location.replace(APP_URL);</script>
+/* طريقة الفتح : داخل الإطار (يبقى الرابط القصير ظاهرا) ؛ إذا لم يشتغل التطبيق داخله خلال 12 ثانية (خطأ Google 401 على بعض الهواتف) → تحويل مباشر تلقائي */
+var WAIT=12000,OK=false;
+window.addEventListener('message',function(e){if(e.data&&e.data.dp==='ready')OK=true});
+setTimeout(function(){if(!OK)location.replace(APP_URL)},WAIT);</script>
 
 <iframe id="app" title="التطبيق" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <div id="fb"><a id="fbA" href="#" target="_top">فتح التطبيق مباشرة ↗</a></div>
 <script>
-  if(MODE!=='redirect')document.getElementById('app').src=APP_URL;
+  document.getElementById('app').src=APP_URL;
   document.getElementById('fbA').href=APP_URL;
 </script>
 </body>
