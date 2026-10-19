@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>تسجيل الدخول</title>
+<!-- منع محركات البحث (Google…) من فهرسة الصفحة أو عرضها في النتائج -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
 <style>
@@ -15,12 +16,15 @@
 </head>
 <body>
 <!-- ⚡ رابط التطبيق : عند تغيير النشر في Apps Script عدّل هذا السطر فقط -->
-<script>var APP_URL='https://script.google.com/macros/s/AKfycbzuO_w0l6UquDrwadeJNQN7IJV2HDOPQ0j5SH9bVuBMjbK_7DSY3SmilQd2RYW1GfNWLQ/exec';</script>
+<script>var APP_URL='https://script.google.com/macros/s/AKfycbzuO_w0l6UquDrwadeJNQN7IJV2HDOPQ0j5SH9bVuBMjbK_7DSY3SmilQd2RYW1GfNWLQ/exec';
+/* طريقة الفتح : 'frame' = داخل الصفحة (يبقى الرابط القصير ظاهرا) ، 'redirect' = تحويل مباشر إلى التطبيق (أضمن على الهاتف) */
+var MODE='redirect';
+if(MODE==='redirect')location.replace(APP_URL);</script>
 
 <iframe id="app" title="التطبيق" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <div id="fb"><a id="fbA" href="#" target="_top">فتح التطبيق مباشرة ↗</a></div>
 <script>
-  document.getElementById('app').src=APP_URL;
+  if(MODE!=='redirect')document.getElementById('app').src=APP_URL;
   document.getElementById('fbA').href=APP_URL;
 </script>
 </body>
